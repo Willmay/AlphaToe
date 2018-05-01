@@ -4,10 +4,10 @@ import sys
 def _score_line(line):
     minus_count = line.count(-1)
     plus_count = line.count(1)
-    if minus_count + plus_count < 3:
-        if minus_count == 2:
+    if minus_count + plus_count < 4:
+        if minus_count == 3:
             return 1
-        elif plus_count == 2:
+        elif plus_count == 3:
             return -1
     return 0
 
@@ -24,14 +24,14 @@ def evaluate_tic_tac_toe(board_state):
             for the minus player
     """
     score = 0
-    for x in range(3):
+    for x in range(4):
         score += _score_line(board_state[x])
-    for y in range(3):
+    for y in range(4):
         score += _score_line([i[y] for i in board_state])
 
     # diagonals
-    score += _score_line([board_state[i][i] for i in range(3)])
-    score += _score_line([board_state[2 - i][i] for i in range(3)])
+    score += _score_line([board_state[i][i] for i in range(4)])
+    score += _score_line([board_state[3 - i][i] for i in range(4)])
 
     return score
 
@@ -154,7 +154,7 @@ def evaluate(board_state):
         score += _score_line([i[y] for i in board_state])
 
     # diagonals
-    score += _score_line([board_state[i][i] for i in range(3)])
-    score += _score_line([board_state[2 - i][i] for i in range(3)])
+    score += _score_line([board_state[i][i] for i in range(4)])
+    score += _score_line([board_state[3 - i][i] for i in range(4)])
 
     return score
