@@ -133,7 +133,7 @@ def min_max_alpha_beta(game_spec, board_state, side, max_depth, evaluation_func=
 
 
 def min_max_player(board_state, side):
-    return min_max(board_state, side, 5)[1]
+    return min_max(board_state, side, 8)[1]
 
 
 def evaluate(board_state):
