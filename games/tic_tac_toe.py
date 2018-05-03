@@ -22,7 +22,7 @@ def _new_board():
     Returns:
         7x7 tuple of ints
     """
-    a = [tuple([0 for i in range(4)]) for j in range(4)]
+    a = [tuple([0 for i in range(5)]) for j in range(5)]
     return tuple(a)
 
 
@@ -61,7 +61,7 @@ def available_moves(board_state):
     Returns:
         Generator of (int, int): All the valid moves that can be played in this position.
     """
-    for x, y in itertools.product(range(4), range(4)):
+    for x, y in itertools.product(range(5), range(5)):
         if board_state[x][y] == 0:
             yield (x, y)
 
@@ -80,19 +80,19 @@ def has_winner(board_state):
         int: 1 if player one has won, -1 if player 2 has won, otherwise 0.
     """
     # check rows
-    for x in range(4):
+    for x in range(5):
         if _has_7_in_a_line(board_state[x]):
             return -board_state[x][0]
     # check columns
-    for y in range(4):
+    for y in range(5):
         if _has_7_in_a_line([i[y] for i in board_state]):
             return -board_state[0][y]
 
     # check diagonals
-    if _has_7_in_a_line([board_state[i][i] for i in range(4)]):
+    if _has_7_in_a_line([board_state[i][i] for i in range(5)]):
         return -board_state[0][0]
-    if _has_7_in_a_line([board_state[3 - i][i] for i in range(4)]):
-        return -board_state[0][3]
+    if _has_7_in_a_line([board_state[4 - i][i] for i in range(5)]):
+        return -board_state[0][4]
 
     return 0  # no one has won, return 0 for a draw
 
@@ -169,7 +169,7 @@ class TicTacToeGameSpec(BaseGameSpec):
         self.evaluate = evaluate
 
     def board_dimensions(self):
-        return 4, 4
+        return 5, 5
 
 
 if __name__ == '__main__':
