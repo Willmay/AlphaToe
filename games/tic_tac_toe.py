@@ -92,7 +92,7 @@ def has_winner(board_state):
     if _has_7_in_a_line([board_state[i][i] for i in range(7)]):
         return -board_state[0][0]
     if _has_7_in_a_line([board_state[6 - i][i] for i in range(7)]):
-        return -board_state[0][2]
+        return -board_state[0][6]
 
     return 0  # no one has won, return 0 for a draw
 
