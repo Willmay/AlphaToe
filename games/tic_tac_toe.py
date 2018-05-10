@@ -40,7 +40,7 @@ def apply_move(board_state, move, side):
     move_x, move_y = move
 
     def get_tuples():
-        for x in range(4):
+        for x in range(5):
             if move_x == x:
                 temp = list(board_state[x])
                 temp[move_y] = side
@@ -91,7 +91,7 @@ def has_winner(board_state):
     # check diagonals
     if _has_7_in_a_line([board_state[i][i] for i in range(5)]):
         return -board_state[0][0]
-    if _has_7_in_a_line([board_state[4 - i][i] for i in range(5)]):
+    if _has_7_in_a_line([board_state[5 - i][i] for i in range(5)]):
         return -board_state[0][4]
 
     return 0  # no one has won, return 0 for a draw
