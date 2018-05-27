@@ -99,9 +99,9 @@ class BaseGameSpec(object):
         player.
 
         Args:
-            plus_player_func ((board_state(3 by 3 tuple of int), side(int)) -> move((int, int))): Function that takes the
+            plus_player_func ((board_state(dim by dim tuple of int), side(int)) -> move((int, int))): Function that takes the
                 current board_state and side this player is playing, and returns the move the player wants to play.
-            minus_player_func ((board_state(3 by 3 tuple of int), side(int)) -> move((int, int))): Function that takes the
+            minus_player_func ((board_state(dim by dim tuple of int), side(int)) -> move((int, int))): Function that takes the
                 current board_state and side this player is playing, and returns the move the player wants to play.
             log (bool): If True progress is logged to console, defaults to False
             board_state: Optionally have the game start from this position, rather than from a new board
@@ -123,7 +123,7 @@ class BaseGameSpec(object):
             if player_turn > 0:
                 move = plus_player_func(board_state, 1)
             else:
-                move = minus_player_func(board_state, -1)
+                move = minus_player_func(board_state, 1)
 
             if move not in _available_moves:
                 # if a player makes an invalid move the other player wins
@@ -139,7 +139,7 @@ class BaseGameSpec(object):
             if winner != 0:
                 if log:
                     print("we have a winner, side: %s" % player_turn)
-                return winner
+                return -player_turn
             player_turn = -player_turn
 
     def get_random_player_func(self):

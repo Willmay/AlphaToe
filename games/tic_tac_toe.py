@@ -21,7 +21,7 @@ def _new_board():
     """Return a emprty tic-tac-toe board we can use for simulating a game.
 
     Returns:
-        7x7 tuple of ints
+        dimxdim tuple of ints
     """
     a = [tuple([0 for i in range(dim)]) for j in range(dim)]
     return tuple(a)
@@ -31,12 +31,12 @@ def apply_move(board_state, move, side):
     """Returns a copy of the given board_state with the desired move applied.
 
     Args:
-        board_state (7x7 tuple of int): The given board_state we want to apply the move to.
+        board_state (dimxdim tuple of int): The given board_state we want to apply the move to.
         move (int, int): The position we want to make the move in.
         side (int): The side we are making this move for, 1 for the first player, -1 for the second player.
 
     Returns:
-        (3x3 tuple of int): A copy of the board_state with the given move applied for the given side.
+        (dimxdim tuple of int): A copy of the board_state with the given move applied for the given side.
     """
     move_x, move_y = move
 
@@ -105,9 +105,9 @@ def play_game(plus_player_func, minus_player_func, log=False):
     player.
 
     Args:
-        plus_player_func ((board_state(7 by 7 tuple of int), side(int)) -> move((int, int))): Function that takes the
+        plus_player_func ((board_state(dim by dim tuple of int), side(int)) -> move((int, int))): Function that takes the
             current board_state and side this player is playing, and returns the move the player wants to play.
-        minus_player_func ((board_state(7 by 7 tuple of int), side(int)) -> move((int, int))): Function that takes the
+        minus_player_func ((board_state(dim by dim tuple of int), side(int)) -> move((int, int))): Function that takes the
             current board_state and side this player is playing, and returns the move the player wants to play.
         log (bool): If True progress is logged to console, defaults to False
 
