@@ -44,7 +44,7 @@ def train_policy_gradients(game_spec,
     actual_move_placeholder = tf.placeholder("float", shape=(None, game_spec.outputs()))
 
     input_layer, output_layer, variables = create_network()
-
+    print "test0"
     policy_gradient = tf.log(
         tf.reduce_sum(tf.multiply(actual_move_placeholder, output_layer), reduction_indices=1)) * reward_placeholder
     train_step = tf.train.AdamOptimizer(learn_rate).minimize(-policy_gradient)
