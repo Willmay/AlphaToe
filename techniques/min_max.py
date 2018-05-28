@@ -1,38 +1,38 @@
 import sys
 
-dim = 3
+#3 = 3
 
 def _score_line(line):
     minus_count = line.count(-1)
     plus_count = line.count(1)
-    if minus_count + plus_count < dim:
-        if minus_count == dim - 1:
+    if minus_count + plus_count < 3:
+        if minus_count == 3 - 1:
             return -1
-        elif plus_count == dim - 1:
+        elif plus_count == 3 - 1:
             return 1
     return 0
 
 
 def evaluate_tic_tac_toe(board_state):
     """Get a rough score for how good we think this board position is for the plus_player for the game tic-tac-toe. Does
-    this based on number of dim - 1 in row lines we have.
+    this based on number of 3 - 1 in row lines we have.
 
     Args:
-        board_state (dimxdim tuple of int): The board state we are evaluating
+        board_state (3x3 tuple of int): The board state we are evaluating
 
     Returns:
         int: evaluated score for the position for the plus player, posative is good for the plus player, negative good
             for the minus player
     """
     score = 0
-    for x in range(dim):
+    for x in range(3):
         score += _score_line(board_state[x])
-    for y in range(dim):
+    for y in range(3):
         score += _score_line([i[y] for i in board_state])
 
     # diagonals
-    score += _score_line([board_state[i][i] for i in range(dim)])
-    score += _score_line([board_state[dim - i - 1][i] for i in range(dim)])
+    score += _score_line([board_state[i][i] for i in range(3)])
+    score += _score_line([board_state[3 - i - 1][i] for i in range(3)])
 
     return score
 
@@ -45,7 +45,7 @@ def min_max(game_spec, board_state, side, max_depth, evaluation_func=None):
         game_spec (BaseGameSpec): The specification for the game we are evaluating
         evaluation_func (board_state -> int): Function used to evaluate the position for the plus player, If None then
             we will use the evaluation function from the game_spec
-        board_state (dimxdim tuple of int): The board state we are evaluating
+        board_state (3x3 tuple of int): The board state we are evaluating
         side (int): either +1 or -1
         max_depth (int): how deep we want our tree to go before we use the evaluate method to determine how good the
         position is.
@@ -93,7 +93,7 @@ def min_max_alpha_beta(game_spec, board_state, side, max_depth, evaluation_func=
     Args:
         game_spec (BaseGameSpec): The specification for the game we are evaluating
         evaluation_func (board_state -> int): Function used to evaluate the position for the plus player
-        board_state (dimxdim tuple of int): The board state we are evaluating
+        board_state (3x3 tuple of int): The board state we are evaluating
         side (int): either +1 or -1
         max_depth (int): how deep we want our tree to go before we use the evaluate method to determine how good the
         position is.
@@ -136,15 +136,15 @@ def min_max_alpha_beta(game_spec, board_state, side, max_depth, evaluation_func=
 
 
 def min_max_player(board_state, side):
-    return min_max(board_state, side, dim + 1)[1]
+    return min_max(board_state, side, 3 + 1)[1]
 
 
 def evaluate(board_state):
     """Get a rough score for how good we think this board position is for the plus_player. Does this based on number of
-    dim - 1 in row lines we have.
+    3 - 1 in row lines we have.
 
     Args:
-        board_state (dimxdim tuple of int): The board state we are evaluating
+        board_state (3x3 tuple of int): The board state we are evaluating
 
     Returns:
         int: evaluated score for the position for the plus player, posative is good for the plus player, negative good
@@ -157,7 +157,7 @@ def evaluate(board_state):
         score += _score_line([i[y] for i in board_state])
 
     # diagonals
-    score += _score_line([board_state[i][i] for i in range(dim)])
-    score += _score_line([board_state[dim - i - 1][i] for i in range(dim)])
+    score += _score_line([board_state[i][i] for i in range(3)])
+    score += _score_line([board_state[3 - i - 1][i] for i in range(3)])
 
     return score
