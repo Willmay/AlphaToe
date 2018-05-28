@@ -171,7 +171,7 @@ class TicTacToeGameSpec(BaseGameSpec):
         self.apply_move = apply_move
         self.evaluate = evaluate
 
-    def board_3ensions(self):
+    def board_dimensions(self):
         return 3, 3
 
 
