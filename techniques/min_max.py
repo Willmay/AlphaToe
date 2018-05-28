@@ -110,7 +110,7 @@ def min_max_alpha_beta(game_spec, board_state, side, max_depth, evaluation_func=
         return 0, None
 
     for move in moves:
-        new_board_state = game_spec.apply_move(board_state, move, side)
+        new_board_state = game_spec.apply_move(board_state, move, 1)
         winner = game_spec.has_winner(new_board_state)
         if winner != 0:
             return winner * 10000, move

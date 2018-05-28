@@ -85,17 +85,17 @@ def has_winner(board_state):
     # check rows
     for x in range(dim):
         if _has_dim_in_a_line(board_state[x]):
-            return -board_state[x][0]
+            return board_state[x][0]
     # check columns
     for y in range(dim):
         if _has_dim_in_a_line([i[y] for i in board_state]):
-            return -board_state[0][y]
+            return board_state[0][y]
 
     # check diagonals
     if _has_dim_in_a_line([board_state[i][i] for i in range(dim)]):
-        return -board_state[0][0]
+        return board_state[0][0]
     if _has_dim_in_a_line([board_state[dim - i - 1][i] for i in range(dim)]):
-        return -board_state[0][dim - 1]
+        return board_state[0][dim - 1]
 
     return 0  # no one has won, return 0 for a draw
 
@@ -136,7 +136,7 @@ def play_game(plus_player_func, minus_player_func, log=False):
                 print("illegal move ", move)
             return -player_turn
 
-        board_state = apply_move(board_state, move, player_turn)
+        board_state = apply_move(board_state, move, 1)
         if log:
             print(board_state)
 
