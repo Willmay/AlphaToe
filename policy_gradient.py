@@ -33,6 +33,8 @@ game_spec = TicTacToeGameSpec()
 
 create_network_func = functools.partial(create_network, game_spec.board_squares(), (1000, 1000, 1000))
 
+print "test1"
+
 train_policy_gradients(game_spec, create_network_func, NETWORK_FILE_PATH,
                        number_of_games=NUMBER_OF_GAMES_TO_RUN,
                        batch_size=BATCH_SIZE,
