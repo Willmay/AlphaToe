@@ -92,9 +92,9 @@ def has_winner(board_state):
             return -board_state[0][y]
 
     # check diagonals
-    if _has_7_in_a_line([board_state[i][i] for i in range(dim)]):
+    if _has_dim_in_a_line([board_state[i][i] for i in range(dim)]):
         return -board_state[0][0]
-    if _has_7_in_a_line([board_state[dim - i - 1][i] for i in range(dim)]):
+    if _has_dim_in_a_line([board_state[dim - i - 1][i] for i in range(dim)]):
         return -board_state[0][6]
 
     return 0  # no one has won, return 0 for a draw

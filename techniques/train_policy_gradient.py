@@ -50,16 +50,16 @@ def train_policy_gradients(game_spec,
     train_step = tf.train.AdamOptimizer(learn_rate).minimize(-policy_gradient)
 
     with tf.Session() as session:
-        print "test0"
+        
         session.run(tf.global_variables_initializer())
 
         if network_file_path and os.path.isfile(network_file_path):
             print("loading pre-existing network")
             load_network(session, variables, network_file_path)
-        print "test1"
+        
         mini_batch_board_states, mini_batch_moves, mini_batch_rewards = [], [], []
         results = collections.deque(maxlen=print_results_every)
-        print "test2"
+        
         def make_training_move(board_state, side):
             mini_batch_board_states.append(np.ravel(board_state) * side)
             move = get_stochastic_network_move(session, input_layer, output_layer, board_state, side)
