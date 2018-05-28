@@ -131,14 +131,14 @@ class BaseGameSpec(object):
                     print("illegal move ", move)
                 return -player_turn
 
-            board_state = self.apply_move(board_state, move, player_turn)
+            board_state = self.apply_move(board_state, move, 1)
             if log:
                 print(board_state)
 
             winner = self.has_winner(board_state)
             if winner != 0:
                 if log:
-                    print("we have a winner, side: %s" % player_turn)
+                    print("we have a winner, side: %s" % -player_turn)
                 return -player_turn
             player_turn = -player_turn
 
