@@ -44,7 +44,7 @@ def train_policy_gradients(game_spec,
     actual_move_placeholder = tf.placeholder("float", shape=(None, game_spec.outputs()))
 
     input_layer, output_layer, variables = create_network()
-    print "test0"
+
     policy_gradient = tf.log(
         tf.reduce_sum(tf.multiply(actual_move_placeholder, output_layer), reduction_indices=1)) * reward_placeholder
     train_step = tf.train.AdamOptimizer(learn_rate).minimize(-policy_gradient)
@@ -67,6 +67,7 @@ def train_policy_gradients(game_spec,
 
         for episode_number in range(1, number_of_games):
             # randomize if going first or second
+            print "Test0"
             if (not randomize_first_player) or bool(random.getrandbits(1)):
                 reward = game_spec.play_game(make_training_move, opponent_func)
             else:
