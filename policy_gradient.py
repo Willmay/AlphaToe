@@ -29,6 +29,8 @@ NUMBER_OF_GAMES_TO_RUN = 1000000
 
 # to play a different game change this to another spec, e.g TicTacToeXGameSpec or ConnectXGameSpec, to get these to run
 # well may require tuning the hyper parameters a bit
+print "test0"
+
 game_spec = TicTacToeGameSpec()
 
 create_network_func = functools.partial(create_network, game_spec.board_squares(), (1000, 1000, 1000))
